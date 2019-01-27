@@ -225,5 +225,6 @@ dmypy.json
 .pyre/
 
 # all output
-.png
-.svg
+*.png
+*.svg
+
