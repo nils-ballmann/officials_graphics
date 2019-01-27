@@ -48,8 +48,9 @@ def main():
 
     # bad zones
     patches.append(
-        mpatches.Rectangle((-(WIDTH/2), -5*player_size), WIDTH, -8*player_size,
-                           fc='red', ec='darkred', lw=2, alpha=0.2)
+        mpatches.Rectangle(
+            (-(WIDTH/2), -5*player_size), WIDTH, -8*player_size, fc='red', ec='darkred', lw=2, alpha=0.2
+        )
     )
     patches.append(
         mpatches.Rectangle((-(WIDTH/2), 5*player_size), WIDTH, 8*player_size, fc='red', ec='darkred', lw=2, alpha=0.2)
