@@ -80,10 +80,6 @@ pyvenv.cfg
 .venv
 pip-selfcheck.json
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
 # Windows thumbnail cache files
 Thumbs.db
 ehthumbs.db
