@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.5
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import math
@@ -7,7 +7,7 @@ import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 import numpy as np
 
-__updated__ = '2017-07-17 14:29:23'
+__updated__ = '2019-01-28 12:08:46'
 
 __version_info__ = ('0', '0', '1')
 __version__ = '.'.join(__version_info__)
