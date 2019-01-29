@@ -3,19 +3,16 @@
 
 # pylint: disable=C0111
 
-__updated__ = '2019-01-27 14:15:07'
+__updated__ = '2019-01-29 21:31:26'
 
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import matplotlib.collections as mcollections
 
-WIDTH = 11.69
-HEIGHT = 8.27
-
 plt.rcParams['svg.fonttype'] = 'none'
 # DIN A4 in inches
-plt.rcParams['figure.figsize'] = (WIDTH, HEIGHT)
+plt.rcParams['figure.figsize'] = (11.69, 8.27)
 
 __version_info__ = [0, 0, 1]
 __version__ = '.'.join([str(digit) for digit in __version_info__])
@@ -23,10 +20,8 @@ __version__ = '.'.join([str(digit) for digit in __version_info__])
 
 def main():
     patches = []
-    # paper
-    patches.append(mpatches.Rectangle((-(WIDTH/2), -(HEIGHT/2)), WIDTH, HEIGHT, fc='white'))
-
     # definitions
+    field_width = 11.69
     team_a_ec = '#2d31a8'
     team_a_fc = '#4248f4'
     team_a_alpha = 0.5
@@ -35,25 +30,31 @@ def main():
     player_size = 0.275
     player_lw = 1
 
-    # neutrale zone
-    patches.append(
-        mpatches.Rectangle((-(WIDTH/2), -(ball_height/2)), WIDTH, ball_height, ec='none', fc='brown', alpha=0.2)
-    )
-    patches.append(mpatches.Ellipse((0, 0), ball_width, ball_height, ec='none', fc='brown'))
-
     # tacklebox
     patches.append(
-        mpatches.Rectangle((-(WIDTH/2), -5*player_size), WIDTH, -8*player_size, fc='lightgrey', lw=2, alpha=0.2)
+        mpatches.Rectangle(
+            (3.5*player_size, 3*player_size), -7*player_size, -15*player_size, fc='lightgrey', lw=2, alpha=0.75
+        )
     )
+
+    # neutrale zone
+    patches.append(
+        mpatches.Rectangle(
+            (-(field_width/2), -(ball_height/2)), field_width, ball_height, ec='none', fc='brown', alpha=0.2
+        )
+    )
+    patches.append(mpatches.Ellipse((0, 0), ball_width, ball_height, ec='none', fc='brown'))
 
     # bad zones
     patches.append(
         mpatches.Rectangle(
-            (-(WIDTH/2), -5*player_size), WIDTH, -8*player_size, fc='red', ec='darkred', lw=2, alpha=0.2
+            (-(field_width/2), -5*player_size), field_width, -8*player_size, fc='red', ec='darkred', lw=2, alpha=0.2
         )
     )
     patches.append(
-        mpatches.Rectangle((-(WIDTH/2), 5*player_size), WIDTH, 8*player_size, fc='red', ec='darkred', lw=2, alpha=0.2)
+        mpatches.Rectangle(
+            (-(field_width/2), 5*player_size), field_width, 8 * player_size, fc='red', ec='darkred', lw=2, alpha=0.2
+        )
     )
 
     patches.append(
@@ -191,6 +192,9 @@ def main():
             alpha=team_a_alpha
         )
     )
+
+    # paper
+    patches.append(mpatches.Rectangle((-(field_width/2), -(HEIGHT/2)), field_width, HEIGHT, fc='white'))
 
     fig, ax = plt.subplots(nrows=1, ncols=1)
     for patch in patches:

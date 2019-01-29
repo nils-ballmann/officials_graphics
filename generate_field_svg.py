@@ -7,7 +7,7 @@ import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 import numpy as np
 
-__updated__ = '2019-01-28 12:08:46'
+__updated__ = '2019-01-29 21:30:06'
 
 __version_info__ = ('0', '0', '1')
 __version__ = '.'.join(__version_info__)
@@ -15,12 +15,12 @@ __version__ = '.'.join(__version_info__)
 
 def main():
     fig = plt.figure(frameon=False, facecolor='white')
-    ax = fig.add_axes([0, 0, 1.0, 1.0])
+    ax = fig.add_axes([0, 0, 117.72, 68.8])
     ax.axis('off')
 
     fig.patch.set_facecolor('white')
 
-    officiatingLineHome = 0.1
+    officiatingLineHome = 6
     officiatingLineAway = 0.9
     sidelineHome = 0.15
     sidelineAway = 0.85
