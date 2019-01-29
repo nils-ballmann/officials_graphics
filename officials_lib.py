@@ -3,7 +3,7 @@
 
 # pylint: disable=C0111
 
-__updated__ = '2019-01-29 22:42:44'
+__updated__ = '2019-01-29 23:03:10'
 
 import enum
 
@@ -39,7 +39,9 @@ class Field(object):
         self.numbers_arrows_width = 0.9
         self.officials_zone_height = 2.0
         self.coaching_zone_height = 2.0
-        self.line = 0.1
+        self.line = 0.2
+        self.line_color = 'white'
+        self.bg_color = 'green'
 
     def render(self):
         patches = []
@@ -48,30 +50,29 @@ class Field(object):
         full_height = self.height + 2*self.runout + self.teamzone_distance
 
         # background
-        patches.append(mpatches.Rectangle((-(full_width)/2, -(full_height)/2), full_width, full_height, fc='green'))
-
-        # endlines
-        patches.append(
-            mpatches.Rectangle(
-                (-(self.width+self.line)/2, -(self.height+self.line)/2), self.line, self.height + self.line, fc='black'
-            )
-        )
-        patches.append(
-            mpatches.Rectangle(
-                ((self.width+self.line)/2, -(self.height+self.line)/2), self.line, self.height + self.line, fc='black'
-            )
-        )
+        patches.append(mpatches.Rectangle((-(full_width)/2, -(full_height)/2),
+                                          full_width, full_height, fc=self.bg_color))
 
         # sidelines
         patches.append(
             mpatches.Rectangle(
-                (-(self.width+self.line)/2, -(self.height+self.line)/2), self.width + self.line, self.line, fc='black'
+                (-(self.width+self.line)/2, -(self.height+self.line)/2), self.width + self.line, self.line, fc=self.line_color
             )
         )
         patches.append(
             mpatches.Rectangle(
-                (-(self.width+self.line)/2, (self.height+self.line)/2), self.width + self.line, self.line, fc='black'
+                (-(self.width+self.line)/2, (self.height+self.line)/2), self.width + self.line, self.line, fc=self.line_color
             )
         )
+
+        # endlines, goallines and ten yard markings
+        for i in range(0, 13):
+            ten_yd_distance = self.width/12
+            base = -(self.width+self.line)/2
+            patches.append(
+                mpatches.Rectangle(
+                    (base + i * ten_yd_distance, -(self.height+self.line)/2), self.line, self.height + self.line, fc=self.line_color
+                )
+            )
 
         return patches
